@@ -51,13 +51,13 @@ export function Laptop({
       const delta = (clientX - lastX.current) / viewport.width;
 
       // Update the island's rotation based on the mouse/touch movement
-      laptopRef.current.rotation.y += delta * 0.01 * Math.PI;
+      laptopRef.current.rotation.y += delta * 0.05 * Math.PI;
 
       // Update the reference for the last clientX position
       lastX.current = clientX;
 
       // Update the rotation speed
-      rotationSpeed.current = delta * 0.01 * Math.PI;
+      rotationSpeed.current = delta * 0.6 * Math.PI;
     }
   };
 

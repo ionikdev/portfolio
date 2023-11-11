@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import sakura from "../assets/sakura.mp3";
 import { HomeInfo, Loader } from "../components";
 import { soundoff, soundon } from "../assets/icons";
-import { Bird, Island, Plane, Sky, House, Laptop } from "../models";
+import { Bird, Island, Plane, Sky, Laptop } from "../models";
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -12,7 +12,7 @@ const Home = () => {
   audioRef.current.loop = true;
 
   const [currentStage, setCurrentStage] = useState(1);
-  const [isRotating, setIsRotating] = useState(false);
+  const [isRotating, setIsRotating] = useState(true);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
   useEffect(() => {
@@ -44,11 +44,11 @@ const Home = () => {
     let screenScale, screenPosition;
 
     if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
-      screenPosition = [0, -6.5, -43.4];
+      screenScale = [0.5, 0.5, 0.5];
+      screenPosition = [0.05, -3, 0.05];
     } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -6.5, -43.4];
+      screenScale = [0.5, 0.5, 0.5];
+      screenPosition = [0.05, -3, 0.05];
     }
 
     return [screenScale, screenPosition];
@@ -86,8 +86,7 @@ const Home = () => {
           />
 
           <Bird />
-          <Sky isRotating={isRotating} />
-          <Island
+          <Laptop
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
@@ -95,12 +94,15 @@ const Home = () => {
             rotation={[0.1, 4.7077, 0]}
             scale={islandScale}
           />
-          <Plane
+
+          <Sky isRotating={isRotating} />
+
+          {/* <Plane
             isRotating={isRotating}
             position={biplanePosition}
             rotation={[0, 20.1, 0]}
             scale={biplaneScale}
-          />
+          /> */}
         </Suspense>
       </Canvas>
 

@@ -5,15 +5,15 @@ import { logo } from "../assets/images";
 const Navbar = () => {
   return (
     <header className="header">
-      <NavLink to="/">
-        <img src={logo} alt="logo" className="w-18 h-18 object-contain" />
+      <NavLink to="/" className=" text-3xl font-extrabold">
+        Ionikdev
       </NavLink>
       <nav className="flex text-lg gap-7 font-medium">
         <NavLink
           is
           to="/about"
           className={({ isActive }) =>
-            isActive ? "text-blue-600" : "text-black"
+            isActive ? "text-blue-600" : "text-white"
           }
         >
           About
@@ -21,7 +21,7 @@ const Navbar = () => {
         <NavLink
           to="/projects"
           className={({ isActive }) =>
-            isActive ? "text-blue-600" : "text-black"
+            isActive ? "text-blue-600" : "text-white"
           }
         >
           Projects
