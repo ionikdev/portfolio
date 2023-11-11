@@ -13,7 +13,7 @@ const Home = () => {
 
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(true);
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -29,13 +29,13 @@ const Home = () => {
     let screenScale, screenPosition;
 
     // If screen width is less than 768px, adjust the scale and position
-    if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
-    } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4];
-    }
+    // if (window.innerWidth < 768) {
+    //   screenScale = [1.5, 1.5, 1.5];
+    //   screenPosition = [0, -1.5, 0];
+    // } else {
+    //   screenScale = [3, 3, 3];
+    //   screenPosition = [0, -4, -4];
+    // }
 
     return [screenScale, screenPosition];
   };
