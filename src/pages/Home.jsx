@@ -5,6 +5,7 @@ import sakura from "../assets/sakura.mp3";
 import { HomeInfo, Loader } from "../components";
 import { soundoff, soundon } from "../assets/icons";
 import { Bird, Island, Plane, Sky, Laptop } from "../models";
+import Contact from "./Contact";
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -48,7 +49,7 @@ const Home = () => {
       screenPosition = [0.05, -3, 0.05];
     } else {
       screenScale = [0.5, 0.5, 0.5];
-      screenPosition = [0.05, -3, 0.05];
+      screenPosition = [0.05, -2, 0.05];
     }
 
     return [screenScale, screenPosition];
@@ -58,16 +59,19 @@ const Home = () => {
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
   return (
-    <section className="w-full h-screen relative">
+    <section className="w-full h-[100vh] relative">
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
+      <div className="absolute top-[200vh]  right-0 z-10 flex items-center justify-center">
+        <Contact />
+      </div>
 
       <Canvas
-        className={`w-full h-screen bg-transparent ${
+        className={`w-full h-[100vh] bg-transparent ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
         }`}
-        camera={{ near: 0.1, far: 1000 }}
+        camera={{ near: 0.1, far: 2000 }}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />

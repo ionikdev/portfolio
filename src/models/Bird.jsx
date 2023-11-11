@@ -1,14 +1,13 @@
-import { useEffect, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
-import { useAnimations, useGLTF } from "@react-three/drei";
+import React, { useEffect, useRef } from "react";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
+import { useAnimations } from "@react-three/drei";
 
 import birdScene from "../assets/3d/bird.glb";
 
 export function Bird({ isRotating }) {
   const birdRef = useRef();
-
-  const { scene, animations } = useGLTF(birdScene);
-
+  const { scene, animations } = useLoader(GLTFLoader, birdScene);
   const { actions } = useAnimations(animations, birdRef);
 
   useEffect(() => {
@@ -21,11 +20,18 @@ export function Bird({ isRotating }) {
     }
   }, [actions, isRotating]);
 
+  useFrame(() => {
+    if (birdRef.current) {
+      birdRef.current.rotation.x += 0.01; // Adjust the rotation speed as needed
+      birdRef.current.rotation.y += 0.01; // Adjust the rotation speed as needed
+    }
+  });
+
   return (
     <mesh
       ref={birdRef}
       position={[0, 0, 0]}
-      onClick={() => console.log("Clicked on the bird!")} // Add your interaction logic here
+      onClick={() => console.log("Clicked on the bird!")}
       onPointerOver={(event) => (
         event.object.material.color.set(0xff0000),
         console.log("Mouse over the bird!")
